@@ -7,9 +7,8 @@ import AuthContext from '@/app/context/AuthContext'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Script from 'next/script'
+import { getSession } from './actions'
 
 export const metadata: Metadata = {
   title: {
@@ -33,7 +32,7 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
