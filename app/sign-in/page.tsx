@@ -1,5 +1,5 @@
-import { getSession } from '@/app/actions'
-// import { getSession } from 'next-auth/react'
+// import { getSession } from '@/app/actions'
+import { getSession } from 'next-auth/react'
 import { GoogleLoginButton, LoginButton } from '@/components/login-button'
 import { redirect } from 'next/navigation'
 

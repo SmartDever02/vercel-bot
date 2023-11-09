@@ -17,8 +17,8 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { ClearHistory } from '@/components/clear-history'
 import { UserMenu } from '@/components/user-menu'
 import { LoginButton } from '@/components/login-button'
-import { getSession } from '@/app/actions'
-// import { getSession } from 'next-auth/react'
+// import { getSession } from '@/app/actions'
+import { getSession } from 'next-auth/react'
 
 export async function Header() {
   const session = await getSession()
