@@ -12,7 +12,6 @@ export default async function SignInPage() {
   }
   return (
     <div className="flex gap-x-4 h-[calc(100vh-theme(spacing.16))] items-center justify-center py-10">
-      <LoginButton />
       <GoogleLoginButton />
       <GoogleOneTap />
     </div>
