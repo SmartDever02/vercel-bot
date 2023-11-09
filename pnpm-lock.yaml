@@ -32,6 +32,9 @@ dependencies:
   '@radix-ui/react-tooltip':
     specifier: ^1.0.6
     version: 1.0.7(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
+  '@types/google-one-tap':
+    specifier: ^1.2.5
+    version: 1.2.5
   '@vercel/analytics':
     specifier: ^1.0.0
     version: 1.1.1
@@ -56,6 +59,9 @@ dependencies:
   focus-trap-react:
     specifier: ^10.1.1
     version: 10.2.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+  google-one-tap:
+    specifier: ^1.0.6
+    version: 1.0.6
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
@@ -1302,6 +1308,10 @@ packages:
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+    dev: false
+
+  /@types/google-one-tap@1.2.5:
+    resolution: {integrity: sha512-d2/wE5mQsiMCUn8aGK/3yKyZzBkZ5LKMFPPfdcsT01Y2gyvDcnz77fbg61YaSFdYDDKbMrLbVw54ib0caFSHSg==}
     dev: false
 
   /@types/hast@2.3.8:
@@ -2855,6 +2865,10 @@ packages:
       csstype: ^3.0.10
     dependencies:
       csstype: 3.1.2
+    dev: false
+
+  /google-one-tap@1.0.6:
+    resolution: {integrity: sha512-sgusL6AmYCsTW/WVpJK0zxsjelPqJt/+3yNj4yHZTJOrHEDO251SR9xbTNB4wYK7nCM86/RaQdsD+8yUNQSQeQ==}
     dev: false
 
   /gopd@1.0.1:
