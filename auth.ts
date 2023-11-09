@@ -16,6 +16,7 @@ export const {
   auth,
   CSRF_experimental // will be removed in future
 } = NextAuth({
+  trustHost: true,
   providers: [
     GitHub,
     Google({
