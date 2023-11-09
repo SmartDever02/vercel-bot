@@ -7,6 +7,9 @@ import AuthContext from '@/app/context/AuthContext'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: {
@@ -29,10 +32,12 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const session = await getServerSession(authOptions)
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
+
       <body
         className={cn(
           'font-sans antialiased',
@@ -40,7 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontMono.variable
         )}
       >
-        <AuthContext>
+        <AuthContext session={session}>
           <Toaster />
           <Providers attribute="class" defaultTheme="system" enableSystem>
             <div className="flex flex-col min-h-screen">
@@ -49,6 +54,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <main className="flex flex-col flex-1 bg-muted/50">
                 {children}
               </main>
+              <Script
+                src="https://accounts.google.com/gsi/client"
+                strategy="beforeInteractive"
+              />
             </div>
             <TailwindIndicator />
           </Providers>

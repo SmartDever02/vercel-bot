@@ -7,7 +7,6 @@ import GoogleOneTap from './google-one-tap'
 export default async function SignInPage() {
   const session = await getSession()
   // redirect to home if user is already logged in
-  console.log('SESSION', session)
   if (session?.user) {
     redirect('/')
   }

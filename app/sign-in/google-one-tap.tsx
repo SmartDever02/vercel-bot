@@ -1,16 +1,60 @@
 'use client'
 
-import useOneTap from '@/hooks/useOneTap'
+import React, { useCallback, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { signIn, useSession } from 'next-auth/react'
 
-export default function GoogleOneTap() {
-  useOneTap()
+const GoogleOneTap = () => {
+  const router = useRouter()
+  const { data: session } = useSession()
+
+  const showPopup = useCallback(() => {
+    const { google } = window as any
+    if (google) {
+      google.accounts.id.initialize({
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+        callback: async (response: any) => {
+          await signIn('googleonetap', {
+            credential: response.credential,
+            redirect: false
+          })
+        },
+        prompt_parent_id: 'one-tap-popup',
+        itp_support: true
+      })
+
+      google.accounts.id.prompt((notification: any) => {
+        if (notification.isNotDisplayed()) {
+          console.log(
+            'getNotDisplayedReason ::',
+            notification.getNotDisplayedReason()
+          )
+        } else if (notification.isSkippedMoment()) {
+          console.log('getSkippedReason  ::', notification.getSkippedReason())
+        } else if (notification.isDismissedMoment()) {
+          console.log(
+            'getDismissedReason ::',
+            notification.getDismissedReason()
+          )
+        }
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!session) {
+      showPopup()
+    } else {
+      router.replace('/')
+    }
+  }, [router, session, showPopup])
 
   return (
     <div
-      id="g_id_onload"
-      data-client_id={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}
-      data-login_uri={`api/auth/callback/google`}
-      data-auto_select="true"
-    ></div>
+      id="one-tap-popup"
+      style={{ position: 'fixed', top: 0, right: 0, zIndex: 999 }}
+    />
   )
 }
+
+export default GoogleOneTap

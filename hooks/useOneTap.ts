@@ -1,5 +1,6 @@
 import googleOneTap from 'google-one-tap'
 import { useEffect } from 'react'
+import { signIn } from 'next-auth/react'
 
 export default function useOneTap() {
   const options = {
@@ -11,9 +12,12 @@ export default function useOneTap() {
 
   useEffect(() => {
     //@ts-ignore
-    googleOneTap(options, response => {
+    googleOneTap(options, async response => {
       // Send response to server
-      console.log(response)
+      await signIn('googleonetap', {
+        credential: response.credential,
+        redirect: false
+      })
     })
   }, [])
 }
