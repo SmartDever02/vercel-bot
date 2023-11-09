@@ -1,10 +1,12 @@
-import { auth } from '@/auth'
+import { getSession } from '@/app/actions'
+// import { getSession } from 'next-auth/react'
 import { GoogleLoginButton, LoginButton } from '@/components/login-button'
 import { redirect } from 'next/navigation'
 
 export default async function SignInPage() {
-  const session = await auth()
+  const session = await getSession()
   // redirect to home if user is already logged in
+  console.log('SESSION', session)
   if (session?.user) {
     redirect('/')
   }
