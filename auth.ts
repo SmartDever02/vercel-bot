@@ -22,8 +22,7 @@ export const {
     GitHub,
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      redirectProxyUrl: `${process.env.NEXTAUTH_URL}/api/auth`
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
   ],
   callbacks: {
